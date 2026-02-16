@@ -11,7 +11,7 @@ enum {
 /* DelayBuffer context, also used in AllPassFilter */
 typedef struct sDelayBuffer {
   // Sample buffer
-  double* buffer;
+  float* buffer;
 
   // Mask for fast array index wrapping in read / write 
   uint16_t mask;
@@ -28,7 +28,7 @@ typedef struct sDattorroVerb {
   DelayBuffer preDelay;       // Delay
 
   // Pre-filter
-  double      preFilter;      // LPF
+  float      preFilter;      // LPF
 
   // input diffusors
   DelayBuffer inDiffusion[4]; // APF
@@ -36,20 +36,20 @@ typedef struct sDattorroVerb {
   // Reverbation tank left / right halves
   DelayBuffer decayDiffusion1[2];  // APF
   DelayBuffer preDampingDelay[2];  // Delay
-  double      damping[2];          // LPF
+  float      damping[2];          // LPF
   DelayBuffer decayDiffusion2[2];  // APF
   DelayBuffer postDampingDelay[2]; // Delay
 
   // -- Reverb settings --
-  double   preFilterAmount;
+  float   preFilterAmount;
 
-  double   inputDiffusion1Amount;
-  double   inputDiffusion2Amount;
+  float   inputDiffusion1Amount;
+  float   inputDiffusion2Amount;
 
-  double   decayDiffusion1Amount;
-  double   dampingAmount;
-  double   decayAmount;
-  double   decayDiffusion2Amount;  // Automatically set in DattorroVerb_setDecay
+  float   decayDiffusion1Amount;
+  float   dampingAmount;
+  float   decayAmount;
+  float   decayDiffusion2Amount;  // Automatically set in DattorroVerb_setDecay
 
   // Cycle count for syncing delay lines
   uint16_t t;
