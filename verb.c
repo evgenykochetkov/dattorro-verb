@@ -94,6 +94,12 @@ void DelayBuffer_init(DelayBuffer* db, uint16_t delay)
   DelayBuffer_setDelay(db, TAP_MAIN, delay);
 }
 
+/* clear the buffer */
+void DelayBuffer_clear(DelayBuffer* db)
+{
+  memset(db->buffer, 0, (db->mask + 1) * sizeof(float));
+}
+
 /* Free resources for DelayBuffer instance */
 void DelayBuffer_delete(DelayBuffer* db)
 {
@@ -261,6 +267,23 @@ void DattorroVerb_delete(DattorroVerb* v)
   }
 
   free(v);
+}
+
+/* clear all the buffers */
+void DattorroVerb_clear(DattorroVerb* v)
+{
+  DelayBuffer_clear(&v->preDelay);
+
+  for (int i = 0; i < 4; i++) {
+    DelayBuffer_clear(&v->inDiffusion[i]);
+  }
+
+  for (int i = 0; i < 2; i++) {
+    DelayBuffer_clear(&v->decayDiffusion1[i]);
+    DelayBuffer_clear(&v->preDampingDelay[i]);
+    DelayBuffer_clear(&v->decayDiffusion2[i]);
+    DelayBuffer_clear(&v->postDampingDelay[i]);
+  }
 }
 
 // Process mono audio

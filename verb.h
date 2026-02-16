@@ -18,6 +18,9 @@ void DattorroVerb_setDamping(struct sDattorroVerb* v, float value);
 /* Send mono input into reverbation tank */
 void DattorroVerb_process(struct sDattorroVerb* v, float in);
 
+/* Clear all the buffers */
+void DattorroVerb_clear(struct sDattorroVerb* v);
+
 /* Get reverbated signal for left channel */
 float DattorroVerb_getLeft(struct sDattorroVerb* v);
 
